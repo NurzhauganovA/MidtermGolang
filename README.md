@@ -4,7 +4,7 @@
 
 docker pull PostgreSQL -> `docker pull postgres`
 
-docker run PostgreSQL -> `docker run --name=online-store-db -e POSTGRES_PASSWORD='********' -p 5436:5432 d --rm postgres` (password is hashing!)
+docker run PostgreSQL -> `docker run --name=online-store-db -e POSTGRES_PASSWORD='********' -p 5436:5432 -d --rm postgres` (password is hashing!)
 
 docker check containers -> `docker ps`
 
