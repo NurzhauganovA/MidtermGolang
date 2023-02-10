@@ -1,6 +1,6 @@
-CREATE TABLE "User"
+CREATE TABLE "user"
 (
-    id serial primary key not null unique,
+    id serial primary key unique,
     name varchar(255) not null,
     surname varchar(255),
     username varchar(255) not null unique,
@@ -12,11 +12,11 @@ CREATE TABLE "UserInformation"
 (
     id serial primary key not null unique,
     user_id int,
-    FOREIGN KEY (user_id) REFERENCES "User" ON DELETE CASCADE,
-    surname varchar(255),
-    username varchar(255) not null unique,
-    email varchar(255) unique,
-    password varchar(255) not null
+    FOREIGN KEY (user_id) REFERENCES "user" ON DELETE CASCADE,
+    paymentCard varchar(255),
+    birthdate time,
+    phone varchar(255),
+    sex varchar(255)
 );
 
 CREATE TABLE "Category"
@@ -69,7 +69,7 @@ CREATE TABLE "Order"
 (
     id          serial primary key not null unique,
     user_id int,
-    FOREIGN KEY (user_id) REFERENCES "User" ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES "user" ON DELETE CASCADE,
     cart_id int references "Cart"(id) on delete cascade not null,
     status varchar(255) not null,
     confirmed boolean default false

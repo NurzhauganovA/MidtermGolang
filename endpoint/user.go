@@ -1,21 +1,19 @@
 package endpoint
 
-import "time"
-
 type User struct {
 	Id       int    `json:"-"`
-	Name     string `json:"name"`
+	Name     string `json:"name" binding:"required"`
 	Surname  string `json:"surname"`
-	Username string `json:"username"`
+	Username string `json:"username" binding:"required"`
 	Email    string `json:"email"`
-	Password string `json:"password"`
+	Password string `json:"password" binding:"required"`
 }
 
 type UserInformation struct {
-	Id          int       `json:"id"`
-	UserId      int       `json:"user_id"`
-	PaymentCard string    `json:"payment_card"`
-	Birthdate   time.Time `json:"birthdate"`
-	Phone       string    `json:"phone"`
-	Sex         string    `json:"sex"`
+	Id          int    `json:"id"`
+	UserId      int    `json:"user_id"`
+	PaymentCard string `json:"payment_card"`
+	Birthdate   string `json:"birthdate"`
+	Phone       string `json:"phone"`
+	Sex         string `json:"sex"`
 }

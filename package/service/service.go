@@ -1,8 +1,12 @@
 package service
 
-import "github.com/NurzhauganovA/online-store/package/repository"
+import (
+	"github.com/NurzhauganovA/online-store/endpoint"
+	"github.com/NurzhauganovA/online-store/package/repository"
+)
 
 type Authorization interface {
+	CreateUser(user endpoint.User) (int, error)
 }
 
 type Category interface {
@@ -18,5 +22,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }
