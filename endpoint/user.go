@@ -1,12 +1,12 @@
 package endpoint
 
 type User struct {
-	Id       int    `json:"-"`
-	Name     string `json:"name" binding:"required"`
+	Id       int
+	Name     string `json:"name"`
 	Surname  string `json:"surname"`
-	Username string `json:"username" binding:"required"`
+	Username string `json:"username"`
 	Email    string `json:"email"`
-	Password string `json:"password" binding:"required"`
+	Password string `json:"password"`
 }
 
 type UserInformation struct {

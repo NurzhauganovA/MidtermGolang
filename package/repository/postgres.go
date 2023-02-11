@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	usersTable            = "user"
+	usersTable            = "User"
 	usersInformationTable = "UserInformation"
 	categoryTable         = "Category"
 	productTable          = "Product"
