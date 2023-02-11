@@ -14,4 +14,4 @@ DROP TABLE "Category";
 
 DROP TABLE "UserInformation";
 
-DROP TABLE "User";
+DROP TABLE Users;

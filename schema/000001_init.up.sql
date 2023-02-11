@@ -1,17 +1,17 @@
-CREATE TABLE "User"
+CREATE TABLE Users
 (
     id serial not null unique,
-    name varchar(255) not null,
+    firstname varchar(255) not null,
     surname varchar(255),
     username varchar(255) not null unique,
     email varchar(255) unique,
-    password varchar(255) not null
+    password_hash varchar(255) not null
 );
 
 CREATE TABLE "UserInformation"
 (
     id serial not null unique,
-    user_id int REFERENCES "User" (id) ON DELETE CASCADE NOT NULL,
+    user_id int REFERENCES Users (id) ON DELETE CASCADE NOT NULL,
     paymentCard varchar(255),
     birthdate time,
     phone varchar(255),
@@ -63,7 +63,7 @@ CREATE TABLE "Cart"
 CREATE TABLE "Order"
 (
     id          serial not null unique,
-    user_id int REFERENCES "User" (id) ON DELETE CASCADE NOT NULL,
+    user_id int REFERENCES Users (id) ON DELETE CASCADE NOT NULL,
     cart_id int REFERENCES "Cart" (id) ON DELETE CASCADE NOT NULL,
     status varchar(255) not null,
     confirmed boolean default false
@@ -73,7 +73,7 @@ CREATE TABLE "Review"
 (
     id          serial not null unique,
     order_id int REFERENCES "Order" (id) ON DELETE CASCADE,
-    user_id int REFERENCES "User" (id) ON DELETE CASCADE,
+    user_id int REFERENCES Users (id) ON DELETE CASCADE,
     image varchar(255),
     review_text text not null,
     rating int
