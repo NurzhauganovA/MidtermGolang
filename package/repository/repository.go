@@ -7,6 +7,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user endpoint.User) (int, error)
+	GetUser(username, password string) (endpoint.User, error)
 }
 
 type Category interface {
