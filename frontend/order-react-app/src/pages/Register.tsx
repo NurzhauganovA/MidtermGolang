@@ -14,7 +14,7 @@ const Register = () => {
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        await fetch('http://127.0.0.1:8000/auth/sign-up', {
+        const response = await fetch('http://127.0.0.1:8000/auth/sign-up', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -24,7 +24,11 @@ const Register = () => {
                 email,
                 password,
             })
-        })
+        });
+
+        const content = await response.json();
+
+        console.log(content);
 
         setRedirect(true);
     }
@@ -46,8 +50,9 @@ const Register = () => {
             <input type="text" className="form-control" placeholder="Username"
                    onChange={e => setUsername(e.target.value)}
             /><br/>
-            <input type="text" className="form-control" placeholder="Email"
-                   onChange={e => setEmail(e.target.value)}/>
+            <input type="email" className="form-control" placeholder="Email"
+                   onChange={e => setEmail(e.target.value)}
+            /><br/>
             <input type="password" className="form-control" placeholder="Password"
                    onChange={e => setPassword(e.target.value)}
             /><br/>
