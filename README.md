@@ -49,3 +49,15 @@ We started the project slowly. We thought we would deliver on the set day, but a
 `schema` -> PostgreSQL files are created here, namely a file for creating tables and a file for deleting tables.
 
 There is also an `ERD` you can look at the table, I'm sure we will expand it.
+
+
+
+
+## Progress Report #2
+
+So that's what we added in the second report. Last time we added completely only the registration system with `Name`, `Surname`, `Username`, `Email` and `Password`. Now we have added authorization via JWT tokens to this system. This is implemented in the `Sign-In` method. We also created a `generatePasswordHash` function through which we can get a hashed password from the database.
+
+Also, if you noticed, last time we run all this every time on the terminal with `Docker`. Starting first `PostgreSQL`, then `Golang` server. And now, we have implemented all this through `docker-compose`, creating `DockerFile` and `docker-compose.yml`.
+
+We also decided to add `React App`. If we assumed correctly, you have removed the frontend part from the project. But we decided to add it anyway, since we can actually see what is happening under the hood of the program system.
+So far, 3 pages have been added. The main 2 is the Registration page and the Authorization page. So far, we have had an error with `CorsHeaders`, but when we launched `React App`, linking with `Django`, we solved this problem very easily. This time on `Golang` we hope to solve it quickly too. That's all.
