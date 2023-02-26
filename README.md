@@ -61,3 +61,12 @@ Also, if you noticed, last time we run all this every time on the terminal with 
 
 We also decided to add `React App`. If we assumed correctly, you have removed the frontend part from the project. But we decided to add it anyway, since we can actually see what is happening under the hood of the program system.
 So far, 3 pages have been added. The main 2 is the Registration page and the Authorization page. So far, we have had an error with `CorsHeaders`, but when we launched `React App`, linking with `Django`, we solved this problem very easily. This time on `Golang` we hope to solve it quickly too. That's all.
+
+
+## Progress Report #3
+
+So, what we did during the week, especially nothing) We didn't have enough time for the project, due to the fact that we are preparing for an internship in the same company as a whole team. Okay, not the point, after all, we added something interesting.
+
+Added `middleware`. In order to check the corresponding user token and respond to the request judging by this token.
+
+What does it mean? We have created such a system, in the future the program can check the token and if this token is correct, it will output us, for example, a list of all products. It's kind of like permissions. If the client who requests the url `http://localhost:8000/api/categories` there is a token (this means he logged in), gets the correct answer.
