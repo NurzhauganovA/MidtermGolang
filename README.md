@@ -70,3 +70,8 @@ So, what we did during the week, especially nothing) We didn't have enough time 
 Added `middleware`. In order to check the corresponding user token and respond to the request judging by this token.
 
 What does it mean? We have created such a system, in the future the program can check the token and if this token is correct, it will output us, for example, a list of all products. It's kind of like permissions. If the client who requests the url `http://localhost:8000/api/categories` there is a token (this means he logged in), gets the correct answer.
+
+
+## Progress Report #4 and #5
+
+What has changed since the previous report? We have added a feature to create product categories. We have created an interface for connecting the Service. Our endpoint `Category` has 2 columns `title`, `description`. Any authorized user can create a category. It is necessary to further correct that if the category already exists, the user cannot create the same category again. Of course, it is not difficult to do this by adding the `unique` attribute to the `title` of categories. You just need to create another validation.
