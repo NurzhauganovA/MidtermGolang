@@ -12,6 +12,7 @@ type Authorization interface {
 }
 
 type Category interface {
+	Create(userId int, category endpoint.Category) (int, error)
 }
 
 type Product interface {
@@ -26,5 +27,6 @@ type Service struct {
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
+		Category:      NewCategoryProductService(repos.Category),
 	}
 }

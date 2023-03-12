@@ -11,6 +11,7 @@ type Authorization interface {
 }
 
 type Category interface {
+	Create(userId int, category endpoint.Category) (int, error)
 }
 
 type Product interface {
