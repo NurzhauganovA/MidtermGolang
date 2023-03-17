@@ -3,9 +3,15 @@ package endpoint
 import "time"
 
 type Category struct {
-	Id          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title" binding:"required"`
+	Description string `json:"description" db:"description"`
+}
+
+type UserCategory struct {
+	Id int
+	UserId int
+	CategoryId int
 }
 
 type Product struct {
@@ -18,6 +24,12 @@ type Product struct {
 	CreatedCompany string    `json:"created_company"`
 	CreatedCountry string    `json:"created_country"`
 	CreatedDate    time.Time `json:"created_date"`
+}
+
+type CategoryProduct struct {
+	Id int
+	CategoryId int
+	ProductId int
 }
 
 type CartProduct struct {

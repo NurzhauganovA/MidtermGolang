@@ -8,6 +8,10 @@ DROP TABLE "CartProductMany";
 
 DROP TABLE "CartProduct";
 
+DROP TABLE "CategoryProduct";
+
+DROP TABLE "UserCategory";
+
 DROP TABLE "Product";
 
 DROP TABLE "Category";

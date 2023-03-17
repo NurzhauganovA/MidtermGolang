@@ -24,10 +24,14 @@ func (r *CategoryProductPostgres) Create(userId int, category endpoint.Category)
 	createCategoryQuery := fmt.Sprintf("INSERT INTO %s (title, description) VALUES ($1, $2) RETURNING id", categoryTable)
 	row := tx.QueryRow(createCategoryQuery, category.Title, category.Description)
 	if err := row.Scan(&id); err != nil {
-		err := tx.Rollback()
-		if err != nil {
-			return 0, err
-		}
+		tx.Rollback()
+		return 0, err
+	}
+
+	createUserCategoryQuery := fmt.Sprintf("INSERT INTO %s (user_id, category_id) VALUES ($1, $2)", usersCategoryTable)
+	_, err = tx.Exec(createUserCategoryQuery, userId, id)
+	if err != nil {
+		tx.Rollback()
 		return 0, err
 	}
 

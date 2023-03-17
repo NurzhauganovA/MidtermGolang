@@ -25,6 +25,13 @@ CREATE TABLE "Category"
     description text
 );
 
+CREATE TABLE "UserCategory"
+(
+    id serial not null UNIQUE,
+    user_id int REFERENCES Users (id) on delete cascade not null,
+    category_id int references "Category" (id) on delete cascade not null
+);
+
 CREATE TABLE "Product"
 (
     id          serial not null unique,
@@ -34,8 +41,14 @@ CREATE TABLE "Product"
     cost float not null,
     created_company varchar(255) not null,
     created_country varchar(255) not null,
-    created_date time not null,
-    category_id int REFERENCES "Category" (id) ON DELETE CASCADE NOT NULL
+    created_date time not null
+);
+
+CREATE TABLE "CategoryProduct"
+(
+    id serial not null unique,
+    product_id int references "Product" (id) on delete cascade not null,
+    category_id int references "Category" (id) on delete cascade not null
 );
 
 CREATE TABLE "CartProduct"
