@@ -9,12 +9,12 @@ const (
 	usersTable            = "Users"
 	usersInformationTable = "UserInformation"
 	categoryTable         = "Category"
-	usersCategoryTable 	  = "UserCategory"
+	usersCategoryTable    = "UserCategory"
 	productTable          = "Product"
 	categoryProductTable  = "CategoryProduct"
 	cartTable             = "Cart"
 	cartProductTable      = "CartProduct"
-	orderTable            = "Order"
+	orderTable            = "OrderProduct"
 	reviewTable           = "Review"
 )
 

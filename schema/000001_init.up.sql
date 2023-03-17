@@ -18,21 +18,21 @@ CREATE TABLE "UserInformation"
     sex varchar(255)
 );
 
-CREATE TABLE "Category"
+CREATE TABLE Category
 (
     id          serial not null unique,
     title       varchar(255)       not null,
     description text
 );
 
-CREATE TABLE "UserCategory"
+CREATE TABLE UserCategory
 (
     id serial not null UNIQUE,
     user_id int REFERENCES Users (id) on delete cascade not null,
-    category_id int references "Category" (id) on delete cascade not null
+    category_id int references Category (id) on delete cascade not null
 );
 
-CREATE TABLE "Product"
+CREATE TABLE Product
 (
     id          serial not null unique,
     image text,
@@ -44,48 +44,48 @@ CREATE TABLE "Product"
     created_date time not null
 );
 
-CREATE TABLE "CategoryProduct"
+CREATE TABLE CategoryProduct
 (
     id serial not null unique,
-    product_id int references "Product" (id) on delete cascade not null,
-    category_id int references "Category" (id) on delete cascade not null
+    product_id int references Product (id) on delete cascade not null,
+    category_id int references Category (id) on delete cascade not null
 );
 
-CREATE TABLE "CartProduct"
+CREATE TABLE CartProduct
 (
     id          serial not null unique,
     quantity int default 1,
     total float
 );
 
-CREATE TABLE "CartProductMany"
+CREATE TABLE CartProductMany
 (
     id serial not null unique,
-    cart_product_id int  REFERENCES "CartProduct" (id) ON DELETE CASCADE,
-    product_id int REFERENCES "Product" (id) ON DELETE CASCADE
+    cart_product_id int  REFERENCES CartProduct (id) ON DELETE CASCADE,
+    product_id int REFERENCES Product (id) ON DELETE CASCADE
 );
 
-CREATE TABLE "Cart"
+CREATE TABLE Cart
 (
     id          serial not null unique,
-    cart_product_id int REFERENCES "CartProduct" (id) ON DELETE CASCADE,
+    cart_product_id int REFERENCES CartProduct (id) ON DELETE CASCADE,
     created_at time,
     total float
 );
 
-CREATE TABLE "Order"
+CREATE TABLE OrderProduct
 (
     id          serial not null unique,
     user_id int REFERENCES Users (id) ON DELETE CASCADE NOT NULL,
-    cart_id int REFERENCES "Cart" (id) ON DELETE CASCADE NOT NULL,
+    cart_id int REFERENCES Cart (id) ON DELETE CASCADE NOT NULL,
     status varchar(255) not null,
     confirmed boolean default false
 );
 
-CREATE TABLE "Review"
+CREATE TABLE Review
 (
     id          serial not null unique,
-    order_id int REFERENCES "Order" (id) ON DELETE CASCADE,
+    order_id int REFERENCES OrderProduct (id) ON DELETE CASCADE,
     user_id int REFERENCES Users (id) ON DELETE CASCADE,
     image varchar(255),
     review_text text not null,
