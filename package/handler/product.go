@@ -19,5 +19,5 @@ func (h *Handler) updateProduct(c *gin.Context) {
 }
 
 func (h *Handler) deleteProduct(c *gin.Context) {
-
+	
 }
