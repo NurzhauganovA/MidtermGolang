@@ -37,3 +37,21 @@ func (r *CategoryProductPostgres) Create(userId int, category endpoint.Category)
 
 	return id, tx.Commit()
 }
+
+func (r *CategoryProductPostgres) GetAll(userId int) ([]endpoint.Category, error) {
+	var categories []endpoint.Category
+
+	query := fmt.Sprintf("SELECT tc.id, tc.title, tc.description FROM %s tc INNER JOIN %s uc on tc.id = uc.category_id where uc.user_id = $1", categoryTable, usersCategoryTable)
+	err := r.db.Select(&categories, query, userId)
+
+	return categories, err
+}
+
+func (r *CategoryProductPostgres) GetById(userId, categoryId int) (endpoint.Category, error) {
+	var category endpoint.Category
+
+	query := fmt.Sprintf(`SELECT tc.id, tc.title, tc.description FROM %s tc INNER JOIN %s uc on tc.id = uc.category_id where uc.user_id = $1 AND uc.category_id = $2`, categoryTable, usersCategoryTable)
+	err := r.db.Get(&category, query, userId, categoryId)
+
+	return category, err
+}

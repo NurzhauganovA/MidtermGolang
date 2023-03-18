@@ -9,27 +9,26 @@ type Category struct {
 }
 
 type UserCategory struct {
-	Id int
-	UserId int
+	Id         int
+	UserId     int
 	CategoryId int
 }
 
 type Product struct {
-	Id             int       `json:"id"`
-	CategoryId     int       `json:"category_id"`
-	Image          string    `json:"image"`
-	Title          string    `json:"title"`
-	Description    string    `json:"description"`
-	Cost           float64   `json:"cost"`
-	CreatedCompany string    `json:"created_company"`
-	CreatedCountry string    `json:"created_country"`
-	CreatedDate    time.Time `json:"created_date"`
+	Id             int       `json:"id" db:"id"`
+	Image          string    `json:"image" db:"image"`
+	Title          string    `json:"title" db:"title" binding:"required"`
+	Description    string    `json:"description" db:"description"`
+	Cost           float64   `json:"cost" db:"cost"`
+	CreatedCompany string    `json:"created_company" db:"created_company"`
+	CreatedCountry string    `json:"created_country" db:"created_country"`
+	CreatedDate    time.Time `json:"created_date" db:"created_date"`
 }
 
 type CategoryProduct struct {
-	Id int
+	Id         int
 	CategoryId int
-	ProductId int
+	ProductId  int
 }
 
 type CartProduct struct {

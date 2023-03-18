@@ -8,7 +8,7 @@ CREATE TABLE Users
     password_hash varchar(255) not null
 );
 
-CREATE TABLE "UserInformation"
+CREATE TABLE UserInformation
 (
     id serial not null unique,
     user_id int REFERENCES Users (id) ON DELETE CASCADE NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE Product
     cost float not null,
     created_company varchar(255) not null,
     created_country varchar(255) not null,
-    created_date time not null
+    created_date time
 );
 
 CREATE TABLE CategoryProduct

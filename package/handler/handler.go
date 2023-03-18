@@ -29,8 +29,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			categories.POST("/", h.createCategory)
 			categories.GET("/", h.getAllCategories)
 			categories.GET("/:id", h.getCategoryById)
-			categories.PUT("/:id", h.updateCategory)
-			categories.DELETE("/:id", h.deleteCategory)
 
 			products := categories.Group(":id/products")
 			{
@@ -42,8 +40,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		products := api.Group("products")
 		{
 			products.GET("/:id", h.getProductById)
-			products.PUT("/:id", h.updateProduct)
-			products.DELETE("/:id", h.deleteProduct)
 		}
 	}
 
