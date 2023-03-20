@@ -21,6 +21,7 @@ type Product interface {
 	Create(userId, categoryId int, product endpoint.Product) (int, error)
 	GetAll(userId, categoryId int) ([]endpoint.Product, error)
 	GetById(userId, productId int) (endpoint.Product, error)
+	GetQueryParam(userId, productTitle string) (endpoint.Product, error)
 }
 
 type Service struct {

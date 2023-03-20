@@ -31,3 +31,7 @@ func (s *ProductService) GetAll(userId, categoryId int) ([]endpoint.Product, err
 func (s *ProductService) GetById(userId, productId int) (endpoint.Product, error) {
 	return s.repo.GetById(userId, productId)
 }
+
+func (s *ProductService) GetQueryParam(userId, productTitle string) (endpoint.Product, error) {
+	return s.repo.GetQueryParam(userId, productTitle)
+}

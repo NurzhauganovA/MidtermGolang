@@ -64,3 +64,14 @@ func (r *ProductPostgres) GetById(userId, productId int) (endpoint.Product, erro
 
 	return product, nil
 }
+
+func (r *ProductPostgres) GetQueryParam(userId, productTitle string) (endpoint.Product, error) {
+	var product endpoint.Product
+	rows := fmt.Sprintf(`SELECT pr.id, pr.title, pr.cost FROM %s pr WHERE pr.title LIKE ? $1`, productTable)
+
+	if err := r.db.Get(&product.Title, rows, productTitle, userId); err != nil {
+		return product, err
+	}
+
+	return product, nil
+}

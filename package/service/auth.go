@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	salt       = "ahajasdfwerq23123423442mmsdf"
+	salt       = "asdfmwqerwqer12341234fdsvxzcvsadf325632"
 	signingKey = "qwerjdfigjdf34534kfksdlfasdfxczv"
 )
 

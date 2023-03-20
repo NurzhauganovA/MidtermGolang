@@ -7,6 +7,29 @@ import (
 	"strconv"
 )
 
+func (h *Handler) getQueryParam(c *gin.Context) {
+	userId, err := getUserId(c)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	productTitle, err := strconv.Atoi(c.Param("title"))
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid category id param")
+		return
+	}
+
+	product, err := h.services.Product.GetById(userId, productTitle)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, product)
+
+}
+
 func (h *Handler) createProduct(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -76,6 +99,19 @@ func (h *Handler) getProductById(c *gin.Context) {
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
+	}
+
+	title := c.Query("title")
+
+	if title != "" {
+		product, err := h.services.GetQueryParam(string(rune(userId)), title)
+
+		if err != nil {
+			newErrorResponse(c, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		c.JSON(http.StatusOK, product)
 	}
 
 	c.JSON(http.StatusOK, product)
