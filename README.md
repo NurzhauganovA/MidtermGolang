@@ -87,4 +87,17 @@ So what did you need to do in the Midterm project on requirements?
 
 3. The search engine system by query parameters. We implemented this using a system for obtaining data of products of some category. Example URL: `localhost:8001/api/categories/1/products?title=Apple`. 
 
-You can see more details in the video where we uploaded in youtube.com .
+You can see more details in the video where we uploaded in youtube.com.
+
+## Midterm 2
+
+So what should we have added to Midterm 2?
+
+1. Filter by price and product rating. As you can see in the video as well as in the code, we implemented this part of the project by accessing the URL `http://localhost:8000/api/products?cost=500` - this of all these products will only bring us those products whose cost of goods is 500. There is also a filter by rating - `http://localhost/api/products?rating=10` - this of all these products will bring us only those goods whose product rating is 10 .
+
+2. Add a rating to the product, such as using a POST request. Referring to the URL - `http://localhost:8000/api/products/int-pk/rating/` - means we will add a rating to some product. Instead of <int-pk> we can insert any unique product id. And judging by this id, we will add a rating to this particular product.
+
+3. Add a comment to the product, such as using a POST request. Referring to the URL - `http://localhost:8000/api/products/int-pk/comment/` - means we will add a comment to some product. Instead of <int-pk> we can insert any unique product id. And judging by this id, we will add a comment to this particular product.
+You can see it in the `createRating()` and `createComment()` functions.
+
+You can see more details in the video where we uploaded in youtube.com.
