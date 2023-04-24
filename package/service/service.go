@@ -22,6 +22,10 @@ type Product interface {
 	GetAll(userId, categoryId int) ([]endpoint.Product, error)
 	GetById(userId, productId int) (endpoint.Product, error)
 	GetQueryParam(userId, productTitle string) (endpoint.Product, error)
+	Rate(userId, productIt int) (endpoint.Product, error)
+	GetFilteredProducts(price float64, price2 float64, rating int) (interface{}, interface{})
+	CreateRating(rating endpoint.Rating) ([]endpoint.Product, error)
+	CreateComment(comment endpoint.Comment) ([]endpoint.Product, error)
 }
 
 type Service struct {

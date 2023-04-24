@@ -10,6 +10,46 @@ type ProductPostgres struct {
 	db *sqlx.DB
 }
 
+func (r *ProductPostgres) CreateComment(comment endpoint.Comment, product endpoint.Product) (int, error) {
+	tx, err := r.db.Begin()
+	if err != nil {
+		return 0, err
+	}
+
+	var productId int
+	createProductQuery := fmt.Sprintf(`INSERT INTO %s (title, description, cost, created_country, created_company, created_date, %s) VALUES ($1, $2, $3, $4, $5, $6)`, productTable, comment)
+	row := tx.QueryRow(createProductQuery, product.Title, product.Description, product.Cost, product.CreatedCountry, product.CreatedCompany, product.CreatedDate)
+	err = row.Scan(&productId)
+
+	if err != nil {
+		return 0, err
+	}
+	createListProductComment := fmt.Sprintf("INSERT INTO %s (comment, product_id) values ($1, $2)", productComment)
+	_, err = tx.Exec(createListProductComment, comment, productId)
+	if err != nil {
+		tx.Rollback()
+		return 0, err
+	}
+
+	return productId, tx.Commit()
+}
+
+func (r *ProductPostgres) GetFilteredProducts(price float64, price2 float64, rating int) (int, error) {
+	_, err := r.db.Exec(`SELECT ti.id, ti.title, ti.description, ti.cost, ti.created_company, ti.created_country, ti.created_date FROM %s ti WHERE ti.cost >= $1 AND ti.cost <= $2 `, productTable, price, price2)
+	if err != nil {
+		return 0, nil
+	}
+	return rating, nil
+}
+
+func (r *ProductPostgres) Rate(rating, productId int) (int, error) {
+	_, err := r.db.Exec(`UPDATE %s SET rating = (rating * rating_count + ?) / (rating_count + 1), rating_count = rating_count + 1 WHERE id = ?`, productTable, rating, productId)
+	if err != nil {
+		return 0, nil
+	}
+	return rating, nil
+}
+
 func NewProductPostgres(db *sqlx.DB) *ProductPostgres {
 	return &ProductPostgres{db: db}
 }

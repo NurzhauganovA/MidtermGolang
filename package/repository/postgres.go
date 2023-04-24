@@ -12,6 +12,7 @@ const (
 	usersCategoryTable    = "UserCategory"
 	productTable          = "Product"
 	categoryProductTable  = "CategoryProduct"
+	productComment        = "Comment"
 	cartTable             = "Cart"
 	cartProductTable      = "CartProduct"
 	orderTable            = "OrderProduct"

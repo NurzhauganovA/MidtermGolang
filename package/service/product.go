@@ -10,6 +10,23 @@ type ProductService struct {
 	categoryRepo repository.Category
 }
 
+func (s *ProductService) CreateRating(rating endpoint.Rating) ([]endpoint.Product, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (s *ProductService) CreateComment(comment, productId int) ([]endpoint.Product, error) {
+	return s.repo.CreateComment(comment, productId), nil
+}
+
+func (s *ProductService) Rate(userId, productId int) (endpoint.Product, error) {
+	return s.repo.Rate(userId, productId)
+}
+
+func (s *ProductService) GetFilteredProducts(price float64, price2 float64, rating int) (interface{}, interface{}) {
+	return s.repo.GetFilteredProducts(price, price2, rating)
+}
+
 func NewProductService(repo repository.Product, categoryRepo repository.Category) *ProductService {
 	return &ProductService{repo: repo, categoryRepo: categoryRepo}
 }
@@ -17,7 +34,6 @@ func NewProductService(repo repository.Product, categoryRepo repository.Category
 func (s *ProductService) Create(userId, categoryId int, product endpoint.Product) (int, error) {
 	_, err := s.categoryRepo.GetById(userId, categoryId)
 	if err != nil {
-		// list does not exists or does not belongs to user
 		return 0, nil
 	}
 

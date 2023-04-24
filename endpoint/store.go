@@ -14,6 +14,20 @@ type UserCategory struct {
 	CategoryId int
 }
 
+type Rating struct {
+	Id        int `json:"id" db:"id"`
+	UserId    int `json:"user_id" db:"user_id"`
+	ProductId int `json:"product_id" db:"product_id"`
+	Rating    int `json:"rating" db:"rating"`
+}
+
+type Comment struct {
+	Id        int    `json:"id" db:"id"`
+	UserId    int    `json:"user_id" db:"user_id"`
+	ProductId int    `json:"product_id" db:"product_id"`
+	Comment   string `json:"comment" db:"comment"`
+}
+
 type Product struct {
 	Id             int       `json:"id" db:"id"`
 	Image          string    `json:"image" db:"image"`
@@ -23,6 +37,15 @@ type Product struct {
 	CreatedCompany string    `json:"created_company" db:"created_company"`
 	CreatedCountry string    `json:"created_country" db:"created_country"`
 	CreatedDate    time.Time `json:"created_date" db:"created_date"`
+	Ratings        []Rating  `json:"ratings,omitempty" db:"-"`  // add ratings field
+	Comments       []Comment `json:"comments,omitempty" db:"-"` // add comments field
+	Rating         int
+	Comment        string
+}
+
+func (p Product) Error() string {
+	//TODO implement me
+	panic("implement me")
 }
 
 type CategoryProduct struct {

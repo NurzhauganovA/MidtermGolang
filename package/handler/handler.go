@@ -40,8 +40,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		products := api.Group("products")
 		{
 			products.GET("/:id", h.getProductById)
+			products.POST("/:id/", h.createRating)
 		}
 	}
 
 	return router
+}
+
+func (h *Handler) createRating(context *gin.Context) {
+
 }
