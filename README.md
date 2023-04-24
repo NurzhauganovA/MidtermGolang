@@ -75,3 +75,16 @@ What does it mean? We have created such a system, in the future the program can 
 ## Progress Report #4 and #5
 
 What has changed since the previous report? We have added a feature to create product categories. We have created an interface for connecting the Service. Our endpoint `Category` has 2 columns `title`, `description`. Any authorized user can create a category. It is necessary to further correct that if the category already exists, the user cannot create the same category again. Of course, it is not difficult to do this by adding the `unique` attribute to the `title` of categories. You just need to create another validation.
+
+
+## Midterm 1
+
+So what did you need to do in the Midterm project on requirements?
+
+1. User registration system. The most important thing in registration is user safety, we have the `generatePasswordHash` function hashes the password and returns the hashed password. 
+
+2. The system of authorization of registered users. We implemented user authorization with the `JWT Token` approach. The `generateToken` function returns us the token that was generated with the `HS256` algorithm. We can also set the time of survival and death of Tokens. 
+
+3. The search engine system by query parameters. We implemented this using a system for obtaining data of products of some category. Example URL: `localhost:8001/api/categories/1/products?title=Apple`. 
+
+You can see more details in the video where we uploaded in youtube.com .
